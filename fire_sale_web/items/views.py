@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from items.
+from items.models import Items
 
 # Create your views here.
 
