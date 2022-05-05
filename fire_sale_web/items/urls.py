@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     #http://localhost:800/items
-    path('', views.index, name="items-index"),
+    path('', views.index, name="users-index"),
 ]

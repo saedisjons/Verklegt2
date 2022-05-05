@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
-    {% block content %}
-        <h2>Welcome to the Users page</h2>
-    {% endblock %}
+{% block content %}
+    <h1>All Users</h1>
+    <div class="users">
+        {% for user in users %}
+            {% include 'users/single_user.html' with user=user %}
+        {% endfor %}
+    </div>
+{% endblock %}
