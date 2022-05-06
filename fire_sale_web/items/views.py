@@ -1,20 +1,32 @@
-from django.shortcuts import render, get_object_or_404
-from models import Item
+from django.shortcuts import render, get_object_or_404, redirect
+from items.forms.item_forms import ItemCreateForm
+from items.models import Item, ItemImage
+
 
 # Create your views here.
 
+
 def index(request):
-   context = {'items': Item.objects.all().order_by('name')}
-   return render(request, 'items/index.html', context)
+    context = {'items': Item.objects.all().order_by('name')}
+    return render(request, 'items/index.html', context)
 
 
 def get_item_by_id(request, id):
-   return render(request, 'items/item_details.html', {
-      'item': get_object_or_404(Item, pk=id)
-   })
+    return render(request, 'items/item_details.html', {
+        'item': get_object_or_404(Item, pk=id)
+    })
 
-def list_new_item(request):
-   if request.method == 'POST':
-      print(1)
-   else:
-      print((2))
+
+def create_item(request):
+    if request.method == "POST":
+        form = ItemCreateForm(data=request.POST)
+        if form.is_valid():
+            item = form.save()
+            item_image = ItemImage(image=request.POST['image'], item=item)
+            item_image.save()
+            return redirect("items-index")
+    else:
+        form = ItemCreateForm()
+    return render(request, 'items/create_item.html', {
+       'form': form
+    })
