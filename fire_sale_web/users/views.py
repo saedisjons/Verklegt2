@@ -14,6 +14,6 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
-    return render(request, 'user/register.hhtml', {
+    return render(request, 'users/register.html', {
         'form': UserCreationForm()
     })
