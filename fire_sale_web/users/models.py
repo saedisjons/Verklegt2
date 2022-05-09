@@ -1,10 +1,19 @@
 from django.db import models
 
+
 # Create your models here.
 class User(models.Model):
-    name = models.CharField(max_length=255)
+    userName = models.CharField(max_length=255)
+    fullName = models.CharField(max_length=255)
     year_of_start = models.DateTimeField()
-    logo = models.CharField(max_length=9999, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.fullName
+
+
+class UserImage(models.Model):
+    image = models.CharField(max_length=9999)
+    UserID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.image
