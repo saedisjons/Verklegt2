@@ -14,7 +14,7 @@ class Item(models.Model):
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
     price = models.FloatField()
     on_sale = models.BooleanField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=False)
 
     def __str__(self):
         return self.name

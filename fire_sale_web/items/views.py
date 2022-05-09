@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from forms.item_forms import ItemCreateForm
+from forms.item_forms import ItemCreateForm, ItemUpdateForm
 from .models import Item, ItemImage
 
 
@@ -49,15 +49,15 @@ def delete_item(request, id):
 @login_required
 def update_item(request, id):
     instance = get_object_or_404(Item, pk=id)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ItemUpdateForm(data=request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('item_details', id=id)
-        else:
-            form = ItemUpdateForm(instance=instance)
-        return render(request, 'items/update_item.html', {
-            'form': form,
-            'id': id
-        })
+            return redirect('/items/item_details.html', id=id)
+    else:
+        form = ItemUpdateForm(instance=instance)
+    return render(request, 'items/update_item.html', {
+        'form': form,
+        'id': id
+    })
 
