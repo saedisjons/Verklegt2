@@ -1,19 +1,19 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from forms.item_forms import ItemCreateForm, ItemUpdateForm
-from .models import Item, ItemImage
+from items.forms.item_forms import ItemCreateForm, ItemUpdateForm
+from items.models import Item, ItemImage
 
 
 def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET('search_filter')
-        items = [ {
+        items = [{
             'id': x.id,
             'name': x.name,
             'description': x.description,
             'firstImage': x.itemImage_set.first().image
-        } for x in Item.objects.filter(name_icontains=search_filter) ]
+        } for x in Item.objects.filter(name_icontains=search_filter)]
         return JsonResponse({ 'data': items })
     context = {'items': Item.objects.all().order_by('name')}
     return render(request, 'items/index.html', context)

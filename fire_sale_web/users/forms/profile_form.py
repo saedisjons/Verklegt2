@@ -7,5 +7,5 @@ class ProfileForm(ModelForm):
         exclude = ['id', 'user']
         widgets = {
             'favorite items': widgets.Select(attrs={ 'class': 'form-control' }),
-            'profile_image': widgets.Select(attrs={ 'class': 'form-control' })
+            'profile_image': widgets.TextInput(attrs={ 'class': 'form-control' })
         }

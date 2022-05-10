@@ -5,7 +5,7 @@ from django.db import models
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.CharField(max_length=9999)
+    profile_image = models.TextField(max_length=9999)
 
 class User(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
