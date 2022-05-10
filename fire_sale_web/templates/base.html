@@ -32,6 +32,7 @@
         <li><a href="{% url 'items-index' %}">Items <span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'users-index' %}">Users</a></li>
           {% if user.is_autenticated %}
+              <li><a href="{%  url 'profile' %}">Profile</a></li>
               <li><a href="{%  url 'logout' %}">Logout</a></li>
           {% else %}
               <li><a href="{% url 'login' %}">Login</a></li>
