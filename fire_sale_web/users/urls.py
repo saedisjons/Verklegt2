@@ -7,6 +7,6 @@ urlpatterns = [
     path('', views.index, name="users-index"),
     path('register', views.register, name="register"),
     path('login', LoginView.as_view(template_name='users/login.html'), name="login"),
-    path('logout', LogoutView.as_view(next_page='login'), name="logout")
-    path('prifle', views.profile, name='profile')
+    path('logout', LogoutView.as_view(next_page='login'), name="logout"),
+    path('profile', views.profile, name='profile')
 ]
