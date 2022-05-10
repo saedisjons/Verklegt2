@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from users.models import User
+from users.models import User, Profile
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
@@ -18,3 +18,10 @@ def register(request):
         'form': UserCreationForm()
     })
 
+def profile(request):
+    profile = Profile.objects.filter(user=request.user).first()
+    if request.method == 'POST':
+        print(1)
+    return render(request, 'users/profile.html', {
+        'form': ''
+    })
