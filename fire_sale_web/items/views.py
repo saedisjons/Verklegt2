@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from items.forms.item_forms import ItemCreateForm, ItemUpdateForm
-from items.models import Item, ItemImage
+from items.models import Item, ItemImage, ItemCategory
 
 
 def index(request):
@@ -15,7 +15,7 @@ def index(request):
             'firstImage': x.itemImage_set.first().image
         } for x in Item.objects.filter(name_icontains=search_filter)]
         return JsonResponse({ 'data': items })
-    context = {'items': Item.objects.all().order_by('name')}
+    context = {'items': Item.objects.all().order_by('name'), 'categories': ItemCategory.objects.all()}
     return render(request, 'items/index.html', context)
 
 #/items/3

@@ -37,6 +37,7 @@
                 {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'register' %}">Register</a></li>
+                    <button id="listItem"><a href="{% url 'create_item' %}">List an Item</a></button>
                 {% endif %}
             </ul>
                 {% if user.is_authenticated %}
@@ -45,6 +46,17 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+      <div class="categoryContainer" >
+        <section>
+        <h4>Categories</h4>
+            <ul class="categories">
+            {% for category in categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+            </ul>
+        </section>
+    </div>
     <div class="container">
 
 {%  block content %}

@@ -6,5 +6,7 @@ urlpatterns = [
     path('<int:id>', views.get_item_by_id, name="item-details"),
     path('create_item', views.create_item, name="create_item"),
     path('delete_item/<int:id>', views.delete_item, name="delete_item"),
-    path('update_item/<int:id>', views.update_item, name="update_item")
+    path('update_item/<int:id>', views.update_item, name="update_item"),
+    path('item_category', views.get_items_in_category, name="item_category")
+
 ]

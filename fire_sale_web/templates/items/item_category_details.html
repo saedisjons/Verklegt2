@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>ITEM CATEGORIES</h1>
+    <h3>Electronics</h3>
+    {% for item in electronics %}
+       <p> {{ item.name }}</p>
+    {% endfor %}
+
+{% endblock %}
