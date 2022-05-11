@@ -1,7 +1,11 @@
-<div class="well item">
-    <a href="/items/{{ item.id }}">
-        <img class="item-image" src="{{ item.itemimage_set.first.image }}" />
-        <h4> {{ item.name }}</h4>
-        <p>{{ item.description }}</p>
-    </a>
+
+<div class="well item" style="width: 30%; float: left;padding: 20px;border: 2px;">
+    <div class="thumbnail">
+      <img class="item-image" src="{{ item.itemimage_set.first.image }}" alt="...">
+      <div class="caption">
+        <h3>{{ item.name }}</h3>
+        <p style="word-wrap: break-word;">{{ item.description }}</p>
+        <p><a href="/items/{{ item.id }}" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
 </div>

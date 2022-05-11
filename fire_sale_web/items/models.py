@@ -31,7 +31,7 @@ class ItemImage(models.Model):
 
 class CategoryItems(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, default=None,blank=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.item
