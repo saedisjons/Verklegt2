@@ -27,3 +27,9 @@ class ItemImage(models.Model):
         return self.image
 
 
+class CategoryItems(models.Model):
+    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
+    item = models.ManyToManyField(Item)
+
+    def __str__(self):
+        return self.item
