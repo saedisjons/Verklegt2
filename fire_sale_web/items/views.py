@@ -16,7 +16,7 @@ def index(request):
             'firstImage': x.itemImage_set.first().image
         } for x in Item.objects.filter(name_icontains=search_filter)]
         return JsonResponse({ 'data': items })
-    context = {'items': Item.objects.all().order_by('name'), 'categories1': Categories.objects.all()}
+    context = {'items': Item.objects.all().order_by('name'), 'categories': Categories.objects.all()}
     return render(request, 'items/index.html', context)
 
 

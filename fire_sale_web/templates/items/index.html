@@ -11,7 +11,13 @@
         </div>
         <div class="items" style="display: flex; flex-wrap: wrap">
             {% for item in items %}
-                {% include 'items/single_item.html' with item=item %}
+                {% if user.is_authenticated %}
+                    {% if item.user_id != user.id %}
+                        {% include 'items/single_item.html' with item=item %}
+                    {% endif %}
+                {% else %}
+                    {% include 'items/single_item.html' with item=item %}
+                {% endif %}
             {% endfor %}
         </div>
     </div>
