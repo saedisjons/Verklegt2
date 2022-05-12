@@ -1,5 +1,5 @@
-<div class="well category">
-    <a href="/category/{{ category.id }}">
-        <h3> {{ category.name }}</h3>
-    </a>
-</div>
+<ul class="categories">
+    {% for category in categories %}
+        <li><a href="/item_category/{{ category.id }}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul>

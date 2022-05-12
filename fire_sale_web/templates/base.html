@@ -46,22 +46,20 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
-      <div class="categoryContainer" >
-        <section>
-        <h4 style="margin-left: 20px">Categories</h4>
-            <ul class="categories">
-            {% for category in categories %}
-                <li>{{ category.name }}</li>
-            {% endfor %}
-            </ul>
-        </section>
+<div class="category-container" style="width: 200px; padding-left: 15px;float: left">
+<section>
+    <h4 style="margin-left: 20px">Categories</h4>
+    <div class="list-group">
+        {% for category in allCategories %}
+            <button type="button" class="list-group-item" style="padding-left: 30px" onclick="location.href='{% url "item_category" category.id %}'">{{ category.name }}</button>
+        {% endfor %}
     </div>
+</section>
+</div>
     <div class="container">
+        {%  block content %}
 
-{%  block content %}
-
-{% endblock %}
+        {% endblock %}
     </div>
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <!-- Latest compiled and minified JavaScript -->

@@ -15,14 +15,25 @@ def index(request):
             'firstImage': x.itemImage_set.first().image
         } for x in Item.objects.filter(name_icontains=search_filter)]
         return JsonResponse({ 'data': items })
-    context = {'items': Item.objects.all().order_by('name'), 'categories': Categories.objects.all()}
+    context = {'items': Item.objects.all().order_by('name'), 'categories1': Categories.objects.all()}
     return render(request, 'items/index.html', context)
+
+
+def category_all_pages(request):
+    return {'allCategories': Categories.objects.all()}
 
 #/items/3
 @login_required
 def get_item_by_id(request, id):
     return render(request, 'items/item_details.html', {
         'item': get_object_or_404(Item, pk=id)
+    })
+
+@login_required
+def get_item_by_category(request, id):
+    return render(request, 'items/item_category_details.html', {
+        'items': Item.objects.all().filter(category=id),
+        'categories': Categories.objects.get(id=id).name
     })
 
 @login_required
