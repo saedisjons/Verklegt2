@@ -8,8 +8,8 @@
     {% for item_image in item.itemimage_set.all %}
         <img src="{{ item_image.image }}" class="item-image" />
     {% endfor %}
-
-    <a href="{% url 'delete_item' item.id %}" class="block btn btn-primary">Delete item</a>
-    <a href="{% url 'update_item' item.id %}" class="block btn btn-primary">Update item</a>
-
+    <div class="single-item-btn">
+        <a href="{% url 'delete_item' item.id %}" class="block btn btn-primary" id="delete">Delete item</a>
+        <a href="{% url 'update_item' item.id %}" class="block btn btn-primary" id="update">Update item</a>
+    </div>
 {% endblock %}
