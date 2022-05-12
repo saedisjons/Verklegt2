@@ -18,3 +18,4 @@ class PaymentDetails(models.Model):
     nameOfCardH = models.TextField(max_length=255)
     cardNum = models.IntegerField()
     expDate = models.DateField()
+    cvv = models.IntegerField(default=None, blank=True, null=True)

@@ -31,14 +31,3 @@ class ItemCreateForm(ModelForm):
             'price': widgets.NumberInput(attrs={'class': 'form-control'}),
             'user': widgets.Select(attrs={'class': 'form-control'})
         }
-
-class ItemOfferForm(ModelForm):
-    image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    category = widgets.Select(attrs={'class': 'form-control'})
-
-    class Meta:
-        model = ItemOffer
-        exclude = {'id'}
-        widgets = {
-            'offer': widgets.NumberInput(attrs={'class': 'form-control'})
-        }

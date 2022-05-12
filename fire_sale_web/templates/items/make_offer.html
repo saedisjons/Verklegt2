@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <form class="form form-horizontal" action="{% url 'make_offer' %}" method="post">
-      {% csrf_token %}
-       {{ form }}
-    <input type="submit" value="Submit offer" class="btn btn-primary pull-right" style="clear: both; margin: 10px 0" />
+    <form method="post">
+        {% csrf_token %}
+        <input id="number" type="number" min="1" class="vLargeTextField" placeholder="Please enter whole numbers"/>
     </form>
 
 {% endblock %}

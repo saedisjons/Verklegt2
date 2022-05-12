@@ -1,24 +1,21 @@
 from django.shortcuts import render, redirect
-
-from forms.contact_info_form import ContactInfoForm
-from forms.payment_details_form import PaymentDetailsForm
+from forms.order_forms import ContactInfoForm, PaymentDetailsForm
 
 # Create your views here.
 
-
 def contact_info(request):
     if request.method == "POST":
-        form = ContactInfoForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            payment_details_form = PaymentDetailsForm()
+        contactForm = ContactInfoForm(data=request.POST)
+        if contactForm.is_valid():
+            contactForm.save()
+            paymentForm = PaymentDetailsForm()
             return render(request, 'orders/payment_details.html', {
-                'form': form
+                'form': paymentForm
             })
     else:
-        form = ContactInfoForm()
+        contactForm = ContactInfoForm()
         return render(request, 'orders/contact_info.html', {
-           'form': form
+           'form': contactForm
         })
 
 
