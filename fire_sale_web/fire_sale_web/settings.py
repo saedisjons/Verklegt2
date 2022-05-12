@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'items.apps.ItemsConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'orders.apps.OrdersConfig'
 ]
 
 SITE_ID = 1

@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from items.forms.item_forms import ItemCreateForm, ItemUpdateForm
+from items.forms.item_forms import ItemCreateForm, ItemUpdateForm, ItemOfferForm
 from items.models import Item, ItemImage, Categories, CategoryItems, ItemOffer
 
 
@@ -80,6 +80,7 @@ def update_item(request, id):
         'id': id
     })
 
+
 def make_offer(request, id):
     context = {}
     buyer = request.user.id
@@ -97,3 +98,21 @@ def make_offer(request, id):
             else:
                 messages.success(request, ('Seems Like There Was An Error...'))
         return render(request, 'items/make_offer.html', context)
+
+def make_offer(request, id):
+    buyer = request.user.id
+    if buyer != None:
+        item = get_object_or_404(request, id)
+        if request.method == "POST":
+            form = ItemOfferForm(data=request.POST)
+            if form.is_valid():
+                offer_price = form.save()
+                offer = ItemOffer(item=item, buyer=buyer, offer=offer_price)
+                offer.save()
+        else:
+            form = ItemOfferForm()
+        return render(request, 'items/make_offer.html', {
+           'form': form
+        })
+    else:
+        return redirect('login')

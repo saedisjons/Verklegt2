@@ -17,6 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/fire_sale_web/items" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/fire_sale_web/static" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/fire_sale_web/users" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fire_sale_web/orders" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (Verklegt2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

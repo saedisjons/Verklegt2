@@ -1,0 +1,15 @@
+
+<div class="offer-popup" style="width: 33%;">
+    <div class="thumbnail" href="/items/{{ item.id }}" >
+        <a href="/items/{{ item.id }}">
+            <img class="item-image" src="{{ item.itemimage_set.first.image }}" >
+        </a>
+      <div class="caption" >
+        <a href="/items/{{ item.id }}">
+            <h3>{{ item.name }}</h3>
+        </a>
+        <p class="item-description" >{{ item.description }}</p>
+        <p><a href="/items/{{ item.id }}" class="btn btn-primary" role="button">View Details</a></p>
+      </div>
+    </div>
+</div>
