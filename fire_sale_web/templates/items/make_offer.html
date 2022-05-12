@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form class="offer-price" method="post" id="form">
+        {% csrf_token %}
+        What is your offer?
+        <input id="number"
+               type="number"
+               min="1"
+               name="offer"
+               placeholder="Please enter whole numbers">
+        <button>Submit</button>
+    </form>
+
+{% endblock %}

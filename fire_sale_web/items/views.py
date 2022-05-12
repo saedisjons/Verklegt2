@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from items.forms.item_forms import ItemCreateForm, ItemUpdateForm
-from items.models import Item, ItemImage, Categories, CategoryItems
+from items.models import Item, ItemImage, Categories, CategoryItems, ItemOffer
 
 
 def index(request):
@@ -23,13 +24,12 @@ def category_all_pages(request):
     return {'allCategories': Categories.objects.all()}
 
 #/items/3
-@login_required
 def get_item_by_id(request, id):
     return render(request, 'items/item_details.html', {
         'item': get_object_or_404(Item, pk=id)
     })
 
-@login_required
+
 def get_item_by_category(request, id):
     return render(request, 'items/item_category_details.html', {
         'items': Item.objects.all().filter(category=id),
@@ -56,10 +56,12 @@ def create_item(request):
 
 @login_required
 def delete_item(request, id):
-    item = get_object_or_404(Item, pk=id)
-    #if request.method == "DELETE":
-    item.delete()
-    return redirect('items-index')
+    context = {}
+    item = get_object_or_404(Item, id=id)
+    if request.method == "POST":
+        item.delete()
+        return redirect('items-index')
+    return render(request, 'items/delete_item.html', context)
 
 @login_required
 def update_item(request, id):
@@ -78,3 +80,20 @@ def update_item(request, id):
         'id': id
     })
 
+def make_offer(request, id):
+    context = {}
+    buyer = request.user.id
+    if buyer == None:
+        return redirect('login')
+    else:
+        item = get_object_or_404(Item, id=id)
+        if request.method == "POST":
+            offer = request.POST['offer']
+            # check if number is valid (not empty and no spaces before or after)
+            if not offer.strip():
+                offer = ItemOffer(item=item, buyer=buyer, offer=offer)
+                offer.save()
+                return render(request, 'items/item_details.html', {})
+            else:
+                messages.success(request, ('Seems Like There Was An Error...'))
+        return render(request, 'items/make_offer.html', context)
