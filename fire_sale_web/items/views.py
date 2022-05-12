@@ -88,13 +88,9 @@ def make_offer(request, id):
         item = get_object_or_404(Item, id=id)
         if request.method == "POST":
             offer_price = request.POST['offer']
-            # check if number is valid (not empty and no spaces before or after)
-            if not offer_price.strip():
-                offer = ItemOffer(item=item, buyer=buyer, offer=int(offer_price))
-                offer.save()
-                return render(request, 'items/item_details.html', {})
-            else:
-                messages.success(request, ('Seems Like There Was An Error...'))
+            offer = ItemOffer(item=item, buyer=buyer, offer=int(offer_price))
+            offer.save()
+            return render(request, 'items/item_details.html')
         return render(request, 'items/make_offer.html', context)
     else:
         return redirect('login')
