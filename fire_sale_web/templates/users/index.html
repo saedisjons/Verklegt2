@@ -2,8 +2,8 @@
 {% block content %}
     <h1>All Users</h1>
     <div class="users">
-        {% for user in users %}
-            {% include 'users/single_user.html' with user=user %}
+        {% for Profile in users %}
+            {% include 'users/single_user.html' with profile=profile %}
         {% endfor %}
     </div>
 {% endblock %}

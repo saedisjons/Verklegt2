@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from items.forms.item_forms import ItemCreateForm, ItemUpdateForm
-from items.models import Item, ItemImage, Categories
+from items.models import Item, ItemImage, Categories, CategoryItems
 
 
 def index(request):
@@ -44,6 +44,9 @@ def create_item(request):
             item = form.save()
             item_image = ItemImage(image=request.POST['image'], item=item)
             item_image.save()
+            categories = Categories(name=request.POST['category'])
+            category_items = CategoryItems(category=categories, item=item)
+            category_items.save()
             return redirect("items-index")
     else:
         form = ItemCreateForm()
@@ -54,6 +57,7 @@ def create_item(request):
 @login_required
 def delete_item(request, id):
     item = get_object_or_404(Item, pk=id)
+    #if request.method == "DELETE":
     item.delete()
     return redirect('items-index')
 
@@ -63,8 +67,10 @@ def update_item(request, id):
     if request.method == "POST":
         form = ItemUpdateForm(data=request.POST, instance=instance)
         if form.is_valid():
-            form.save()
-            return redirect('/items/item_details.html', id=id)
+            item = form.save()
+            item_image = ItemImage(image=request.POST['image'], item=item)
+            item_image.save()
+            return get_item_by_id(request, id)
     else:
         form = ItemUpdateForm(instance=instance)
     return render(request, 'items/update_item.html', {
