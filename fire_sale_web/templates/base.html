@@ -46,21 +46,25 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="category-container" style="width: 200px; padding-left: 15px;float: left">
-<section>
-    <h4 style="margin-left: 20px">Categories</h4>
-    <div class="list-group">
-        {% for category in allCategories %}
-            <button type="button" class="list-group-item" style="padding-left: 30px" onclick="location.href='{% url "item_category" category.id %}'">{{ category.name }}</button>
-        {% endfor %}
+<div class="base-container" style="display: flex">
+    <div class="category-container" style="width: 200px; padding-left: 15px;float: left">
+    <section>
+        <h4 style="margin-left: 20px">Categories</h4>
+        <div class="list-group">
+            {% for category in allCategories %}
+                <button type="button" class="list-group-item" style="padding-left: 30px" onclick="location.href='{% url "item_category" category.id %}'">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+    </section>
     </div>
-</section>
-</div>
     <div class="container">
+        <div class="single-item-container">
         {%  block content %}
 
         {% endblock %}
+        </div>
     </div>
+</div>
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

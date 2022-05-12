@@ -2,15 +2,17 @@
 {% block content %}
 
     <h1 class="red"> Item Catalog</h1>
-    <div class="input-group">
-        <input type="search" class="form-control" id="search-box" placeholder="Enter your search here.." />
-        <div class="input-group-btn">
-            <button type="button" id="search-btn" class="btn btn-default">Search</button>
+    <div class="item-container" >
+        <div class="input-group">
+            <input type="search" class="form-control" id="search-box" placeholder="Enter your search here.." />
+            <div class="input-group-btn">
+                <button type="button" id="search-btn" class="btn btn-default">Search</button>
+            </div>
         </div>
-    </div>
-    <div class="items">
-        {% for item in items %}
-            {% include 'items/single_item.html' with item=item %}
-        {% endfor %}
+        <div class="items" style="display: flex; flex-wrap: wrap">
+            {% for item in items %}
+                {% include 'items/single_item.html' with item=item %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
