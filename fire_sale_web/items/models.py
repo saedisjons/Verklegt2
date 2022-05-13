@@ -40,7 +40,7 @@ class CategoryItems(models.Model):
 
 class ItemOffer(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    #owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    buyer = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE)
     offer = models.FloatField(blank=False)
 

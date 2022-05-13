@@ -3,7 +3,8 @@
 
     <form method="post">
         {% csrf_token %}
-        <input id="offer" type="number" min="1" class="vLargeTextField" placeholder="Please enter whole numbers"/>
+        Your Offer: <input name="offer" type="number" min="1" class="vLargeTextField" placeholder="Please enter whole numbers"/>
+        <input class="btn btn-primary" type="submit" value="Confirm" />
     </form>
 
 {% endblock %}
