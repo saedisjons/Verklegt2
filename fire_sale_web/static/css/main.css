@@ -25,6 +25,11 @@ button.list-group-item {
     margin: 0px;
 }*/
 
+.form-group input[type=text] {
+  border: darkgray;
+  font-size: 17px;
+}
+
 .dropdown {
     display: inline-block;
 }
