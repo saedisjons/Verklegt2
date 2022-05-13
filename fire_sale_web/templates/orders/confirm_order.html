@@ -1,0 +1,43 @@
+{% block content %}
+    <div class="confirm-order-container">
+        <div class="confirm-order-container-left">
+            <div class="contact-info-container">
+                <h4>Contact Info</h4>
+                <div class="contact-info-content">
+                    <p><strong>Address:</strong> <span id="contact-info-address-field"></span></p>
+                    <p><strong>City:</strong> <span id="contact-info-city-field"></span></p>
+                    <p><strong>Postcode:</strong> <span id="contact-info-postCode-field"></span></p>
+                    <p><strong>Country:</strong> <span id="contact-info-country-field"></span></p>
+                </div>
+            </div>
+            <div class="payment-details-container">
+                <h4>Payment Details</h4>
+                <div class="payment-details-content">
+                    <p><strong>Name of Cardholder:</strong> <span id="payment-details-cardHolder-field"></span></p>
+                    <p><strong>Card Number:</strong> <span id="payment-details-cardNumber-field"></span></p>
+                    <p><strong>Expiration Date:</strong> <span id="payment-details-expirationDate-field"></span></p>
+                    <p><strong>CVV:</strong> <span id="payment-details-cvv-field"></span></p>
+                </div>
+            </div>
+            <div class="rating-container">
+                <h4>Rating</h4>
+                <div class="rating-content">
+                    <p><strong>Rating:</strong> <span id="rating-field"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="confirm-order-container-right">
+            <div class="item-container">
+                <h4>Item</h4>
+                <div class="item-content">
+                    <p><strong>Name:</strong> {{ item.name }}</p>
+                    <p><strong>Description:</strong> {{ item.name }}</p>
+                    <p><strong>Price:</strong> {{ item.price }}</p>
+                    <p class="hidden"><strong>Seller:</strong> <span id="item-userId">{{ item.user_id }}</span></p>
+                    <img src="{{ item.itemimage_set.first.image }}" >
+                </div>
+            </div>
+        </div>
+        <button type="button" class="list-group-item" id="confirm-order-btn">Confirm Order</button>
+    </div>
+{% endblock %}

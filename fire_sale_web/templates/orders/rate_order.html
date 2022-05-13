@@ -1,6 +1,6 @@
 {% block content %}
     <form class="form form-horizontal" action="{% url 'confirm_order' %}" method="post">
         {% csrf_token %}
-        {{ contactForm }}
+        {{ ratingForm }}
     </form>
 {% endblock %}

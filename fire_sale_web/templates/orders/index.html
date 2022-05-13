@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="order-base-container">
+    <div class="nav-tabs-container">
+      <ul class="nav nav-tabs" role="tablist" id="order-tabs">
+        <li role="presentation" class="contact-info-tab active"><a href="#contactinfo" aria-controls="contactinfo" role="tab" data-toggle="tab">Contact Info</a></li>
+        <li role="presentation" class="payment-details-tab"><a href="#paymentdetails" aria-controls="paymentdetails" role="tab" data-toggle="tab">Payment Details</a></li>
+        <li role="presentation" class="review-order-tab"><a href="#rateorder" aria-controls="rateorder" role="tab" data-toggle="tab">Rate Order</a></li>
+        <li role="presentation" class="confirm-order-tab" id="confirm-order-tab"><a href="#confirm-order" aria-controls="confirm-order" role="tab" data-toggle="tab">Confirm Order</a></li>
+      </ul>
+    </div>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="contactinfo">{% include "orders/contact_info.html" %}</div>
+    <div role="tabpanel" class="tab-pane" id="paymentdetails">{% include "orders/payment_details.html" %}</div>
+    <div role="tabpanel" class="tab-pane" id="rateorder">{% include "orders/rate_order.html" %}</div>
+    <div role="tabpanel" class="tab-pane" id="confirm-order">{% include "orders/confirm_order.html" %}</div>
+  </div>
+</div>
+{% endblock %}

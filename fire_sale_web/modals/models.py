@@ -8,3 +8,4 @@ class ItemOffer(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="item_owner")
     buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="item_buyer")
     offer = models.FloatField(blank=False)
+
