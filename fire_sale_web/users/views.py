@@ -31,10 +31,11 @@ def profile(request):
         form = ProfileForm(instance=profile, data=request.POST)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            #return redirect('profile')
-            return get_profile_by_id(request, Profile.user.id)
+            request.user.email = form.cleaned_data.get('email')
+            request.user.first_name = form.cleaned_data.get('first_name')
+            request.user.last_name = form.cleaned_data.get('last_name')
+            request.user.save()
+            return get_profile_by_id(request, profile.user_id)
     return render(request, 'users/profile.html', {
         'form': ProfileForm(instance=profile)
     })
