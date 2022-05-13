@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 from users.models import Profile
+from datetime import datetime
 
 
 # Create your models here.
-
-
 class Categories(models.Model):
     name = models.CharField(max_length=255)
 
@@ -19,6 +18,7 @@ class Item(models.Model):
     price = models.FloatField()
     on_sale = models.BooleanField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+    date_create = models.DateTimeField(default=datetime.utcnow)
 
     def __str__(self):
         return self.name
@@ -38,9 +38,5 @@ class CategoryItems(models.Model):
     def __str__(self):
         return self.category_id
 
-class ItemOffer(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    buyer = models.ForeignKey(User, on_delete=models.CASCADE)
-    offer = models.FloatField(blank=False)
+
 

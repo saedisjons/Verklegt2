@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('items/', include('items.urls')),
     path('users/', include('users.urls')),
-    path('orders/', include('orders.urls'))
+    path('orders/', include('orders.urls')),
+    path('', include('modals.urls', namespace='modals'))
 ]

@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'items.apps.ItemsConfig',
     'users.apps.UsersConfig',
-    'orders.apps.OrdersConfig'
+    'orders.apps.OrdersConfig',
+    #'widget_tweaks',
+    'modals.apps.ModalsConfig'
 ]
 
 SITE_ID = 1

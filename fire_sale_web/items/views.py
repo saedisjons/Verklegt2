@@ -1,12 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from items.forms.item_forms import ItemCreateForm, ItemUpdateForm
-from items.models import Item, ItemImage, Categories, CategoryItems, ItemOffer
-from users.views import Profile
-
+from items.models import Item, ItemImage, Categories, CategoryItems
 
 def index(request):
     if 'search_filter' in request.GET:
@@ -83,17 +80,4 @@ def update_item(request, id):
     })
 
 
-def make_offer(request, id):
-    context = {}
-    item = get_object_or_404(Item, id=id)
-    buyer = get_object_or_404(User, pk=request.user.id)
-    owner = get_object_or_404(Profile, pk=item.user_id)
-    if buyer != None:
-        if request.method == "POST":
-            offer_price = request.POST["offer"]
-            offer = ItemOffer(item=item, buyer=buyer,owner=owner, offer=int(offer_price))
-            offer.save()
-            return get_item_by_id(request, id)
-        return render(request, 'items/make_offer.html', context)
-    else:
-        return redirect('login')
+

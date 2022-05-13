@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django import forms
-from items.models import Item, ItemOffer
+from items.models import Item
 
 class ItemUpdateForm(ModelForm):
     image = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
