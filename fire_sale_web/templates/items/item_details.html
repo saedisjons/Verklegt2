@@ -9,14 +9,14 @@
         <img src="{{ item_image.image }}" class="item-image" />
     {% endfor %}
 
-    {% if user.is_authenticated %} AND {% if user.id == item.user_id %}
+    {% if user.is_authenticated %}{% if user.id == item.user_id %}
         <div class="single-item-btn">
             <a href="{% url 'delete_item' item.id %}" class="block btn btn-primary" id="delete">Delete item</a>
             <a href="{% url 'update_item' item.id %}" class="block btn btn-primary" id="update">Update item</a>
         </div>
     {% else %}
         <div class="offer-btn">
-            <a href="{% url 'make_offer' item.id %}" class="block btn btn-primary" id="offer">Make an offer</a>
+            {% include "modals/modalsBase.html" %}
         </div>
     {% endif %}{% endif %}
 

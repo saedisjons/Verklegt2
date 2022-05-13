@@ -22,5 +22,5 @@ urlpatterns = [
     path('items/', include('items.urls')),
     path('users/', include('users.urls')),
     path('orders/', include('orders.urls')),
-    path('', include('modals.urls', namespace='modals'))
+    path('modals/', include('modals.urls', namespace='modals'))
 ]

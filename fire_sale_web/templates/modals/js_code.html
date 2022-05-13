@@ -1,19 +1,70 @@
 <script>
-$(function() {
-    $("#button__click").on("click", function() {
-        $("#click__modal").dialog({
+    $(function() {
+    $("#button__click").on("click", offerButtonHandler);
+});
+
+  function addOffer(){
+      console.log("adding offer")
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'modals:form_test' 28 %}",
+                data:{
+                    csrfmiddlewaretoken:'{{ csrf_token }}',
+                    offer:$('#offer_input').val(),
+                },
+            success: function(data){
+                    var click_modal = $('#click_modal');
+                    $('#offer_input').addClass('hidden');
+                    $('#offer_input').val('');
+                    click_modal.dialog({
+                        modal: true,
+                        height: "auto",
+                        width: "50vw",
+                        title: "Congratulations, you have made an offer!",
+                        buttons: {
+                            "Make another offer!": offerButtonHandler,
+                            "Go back to items": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+
+                    });
+                },
+            error: function(error) {
+                var click_modal = $('#click_modal');
+                $('#offer_input').addClass('hidden');
+                $('#offer_input').val('');
+                click_modal.dialog({
+                    modal: true,
+                    height: "auto",
+                    width: "50vw",
+                    title: "Sorry, something went wrong!",
+                    buttons: {
+                        "Try again!": offerButtonHandler,
+                        "Go back to items": function () {
+                            $(this).dialog("close");
+                            }
+                        }
+                    });
+                },
+            });
+  }
+
+
+    function offerButtonHandler() {
+        $('#offer_input').removeClass('hidden')
+        $("#click_modal").dialog({
                 modal: true,
                 height: "auto",
-                width: "30vw",
-                title: "Please add number!",
+                width: "50vw",
+                title: "Make your offer :)",
                 buttons: {
-                    // "Add Number": ,
+                    "Confirm offer!": addOffer, //Be careful here!
                     "Cancel": function () {
                         $(this).dialog("close");
                     }
                 }
             }
         )
-    });
-});
+    }
 </script>

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import FormView
 
@@ -9,22 +10,47 @@ from users.models import Profile
 from .models import ItemOffer
 from .forms.modal_forms import OfferForm
 
-
-def make_offer(request, id):
+def form_test(request, id):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     context = {}
     item = get_object_or_404(Item, id=id)
     buyer = get_object_or_404(User, pk=request.user.id)
-    owner = get_object_or_404(Profile, pk=item.user_id)
-    if buyer != None:
+    owner = get_object_or_404(User, pk=item.user_id)
+    if is_ajax and buyer != None:
         if request.method == "POST":
-            offer_price = request.POST["offer"]
+            offer_price = request.POST['offer']
             offer = ItemOffer(item=item, buyer=buyer,owner=owner, offer=int(offer_price))
             offer.save()
             return get_item_by_id(request, id)
-        return render(request, 'items/make_offer.html', context)
+        return render(request, 'modals/modalsBase.html', context)
     else:
         return redirect('login')
 
-class OfferFormView(FormView):
-    template_name = "modals/home.html"
-    form_class = OfferForm
+#class OfferFormView(FormView):
+ #   template_name = "modals/modalsBase.html"
+  #  form_class = make_offer
+
+def form_testt(request, *args, **kwargs):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    form = OfferForm()
+    data = {}
+    buyer = get_object_or_404(User, pk = request.user.id)
+    if is_ajax:
+        form = OfferForm(request.POST)
+        if form.is_valid():
+            data['offer'] = form.cleaned_data.get('offer')
+            data['status'] = 'ok'
+            data['buyer'] = buyer
+            new_offer = ItemOffer(
+                offer = data['offer'],
+                buyer = data['buyer']
+            )
+            new_offer.save()
+            return JsonResponse(data)
+        else:
+            data['status'] = 'error'
+            return JsonResponse(data)
+    context = {
+        'form':form
+    }
+    return render(request, 'modals/modalsBase.html', context)

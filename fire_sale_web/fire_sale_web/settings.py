@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'items.apps.ItemsConfig',
     'users.apps.UsersConfig',
     'orders.apps.OrdersConfig',
-    #'widget_tweaks',
+    'widget_tweaks',
     'modals.apps.ModalsConfig'
 ]
 

@@ -1,14 +1,24 @@
-{% extends "base.html" %}
 {% load  widget_tweaks %}
 {% block content %}
     <section class="button">
-        <div class="button__title">jQueryUI modal</div>
+        <div class="button__title">Do you want to make an offer? </div>
         <div class="button__area">
-            <button id="button__click" class="button__click">Click!</button>
+            <button id="button__click" class="button__click">Yes Please!</button>
         </div>
 
+        <div id="click_modal" style="display:none;">
+            <input type="number" name="offer" id="offer_input">
+        </div>
+
+    </section>
+    <section class="click">
         <div id="click__modal" style="display:none;">
+            <form id="click__confirm" class="click__confirm" autocomplete="off" action="{% url 'modals:form_test' 28 %}" method="POST">
+               {% csrf_token %}
+                <div class="click__label">offer</div>
+               {% render_field form.make_offer class="form_field"%}
+            </form>
+        <div id="message" class="success_message"></div>
         </div>
-
     </section>
 {% endblock %}
