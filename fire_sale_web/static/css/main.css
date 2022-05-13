@@ -24,44 +24,34 @@ button.list-group-item {
     width: 33%;
     margin: 0px;
 }*/
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: rgb(214, 240, 255);
-}
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+    display: inline-block;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border: none;
+    font-size: 16px;
+    z-index: 1;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+.dropdown-menu a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown-menu a:hover {
+    background-color: rgba(180, 180, 180, 0.35);
+}
 
-.show {display: block;}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 .items {
     padding-top: 15px;
@@ -115,8 +105,8 @@ img.profile-image {
 a#update.block.btn.btn-primary {
     width: 220px;
     font-size: large;
-
 }
+
 a#delete.block.btn.btn-primary {
     width: 220px;
     font-size: large;
@@ -133,3 +123,4 @@ a.block.btn.btn-primary2 {
 }
 
 .category-items-container.well-item
+
