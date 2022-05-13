@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from users.models import Profile
 from datetime import datetime
 
 
@@ -37,6 +36,13 @@ class CategoryItems(models.Model):
 
     def __str__(self):
         return self.category_id
+
+class UsersItems(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.item_id
 
 
 

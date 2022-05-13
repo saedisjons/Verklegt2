@@ -79,5 +79,10 @@ def update_item(request, id):
         'id': id
     })
 
-
+def get_item_by_user_id(request, id):
+    return render(request, 'items/users_items_details.html', {
+        'items': Item.objects.all().filter(user_id=id),
+        'user': User.objects.get(id=id),
+        'id': id
+    })
 
