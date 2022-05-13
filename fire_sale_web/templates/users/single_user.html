@@ -2,8 +2,7 @@
     <a href="#">
         <img class="user-image" src="{{ Profile.profile_image }}" />
         <button
-            id="user-profile"><a href="{% url 'profile' %}">{{  Profile.user }}</a></button>
-        </button>
-        <h3> {{ Profile.user.get_email }}</h3>
+            id="user-profile"><a href="{% url 'profile' Profile.user_id %}">{{  Profile.user }}</a></button>
+        <h3> {{ Profile.user.email }}</h3>
     </a>
 </div>

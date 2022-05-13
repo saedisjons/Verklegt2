@@ -27,31 +27,3 @@ def form_test(request):
     else:
         return redirect('login')
 
-#class OfferFormView(FormView):
- #   template_name = "modals/modalsBase.html"
-  #  form_class = make_offer
-
-def form_testt(request, *args, **kwargs):
-    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
-    form = OfferForm()
-    data = {}
-    buyer = get_object_or_404(User, pk = request.user.id)
-    if is_ajax:
-        form = OfferForm(request.POST)
-        if form.is_valid():
-            data['offer'] = form.cleaned_data.get('offer')
-            data['status'] = 'ok'
-            data['buyer'] = buyer
-            new_offer = ItemOffer(
-                offer = data['offer'],
-                buyer = data['buyer']
-            )
-            new_offer.save()
-            return JsonResponse(data)
-        else:
-            data['status'] = 'error'
-            return JsonResponse(data)
-    context = {
-        'form':form
-    }
-    return render(request, 'modals/modalsBase.html', context)

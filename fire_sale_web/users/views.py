@@ -22,10 +22,11 @@ def register(request):
 #/items/3
 def get_profile_by_id(request, id):
     return render(request, 'users/profile.html', {
-        'profile': get_object_or_404(Profile, pk=id)
+        'user_profile': get_object_or_404(User, pk=id),
+        'profile': get_object_or_404(Profile, user_id = id)
     })
 
-def profile(request):
+def update_profile(request, id):
     profile = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
         form = ProfileForm(instance=profile, data=request.POST)
@@ -34,8 +35,12 @@ def profile(request):
             request.user.email = form.cleaned_data.get('email')
             request.user.first_name = form.cleaned_data.get('first_name')
             request.user.last_name = form.cleaned_data.get('last_name')
+            request.user.profile_image = form.cleaned_data.get('profile_image')
             request.user.save()
+            profile.save()
             return get_profile_by_id(request, profile.user_id)
-    return render(request, 'users/profile.html', {
-        'form': ProfileForm(instance=profile)
+    return render(request, 'users/update_profile.html', {
+        'form': ProfileForm(instance=profile),
+        'profile': profile,
+        'id': id
     })

@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Profile</h1>
+    <h1>{{ user_profile.first_name }} {{ user_profile.last_name }}</h1>
+    <h3>{{ user_profile.username }}</h3> <h5>{{ user_profile.email }}</h5>
 
-    <form class="form form-horizontal" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="Update" />
-    </form>
+    <img class="user-image" src="{{ profile.profile_image }}"  alt="Profile Photo"/>
+    <p class="hidden" id="userProfileContainer">{{ user_profile.id }}</p>
+
+    {% if user.id == user_profile.id %}
+        <div class="update-profile-btn">
+            <a href="{% url 'update_profile' user_profile.id %}" class="block btn btn-primary" id="update">Update Profile</a>
+            <a href="{% url 'users-index' %}" class="block btn btn-primary" id="back">Go back</a>
+        </div>
+    {% else %}
+        <div class="back-btn">
+            <a href="{% url 'users-index' %}" class="block btn btn-primary" id="back">Go back</a>
+        </div>
+    {% endif %}
 
 {% endblock %}

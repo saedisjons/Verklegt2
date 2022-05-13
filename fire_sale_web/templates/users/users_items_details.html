@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>{{ My Items }}</h1>
+    <div class="users-items-container">
+    {% for item in items %}
+            {% include 'items/single_item.html' with item=item %}
+    {% endfor %}
+    </div>
+
+{% endblock %}

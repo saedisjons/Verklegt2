@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>Profile</h1>
+    <div class="profile-home" style="height: 80%;" style="width: 80%;">
+        <div class="thumbnail" href="/profile/{{ Profile.user_id }}" >
+            <a href="/profile/{{ Profile.user_id }}">
+                <img class="user-image" src="{{ Profile.profile_image }}" />
+                <button
+                    id="update-profile"><a href="{% url 'update_profile' id %}">Update Profile</a></button>
+                <h3> {{ Profile.user.email }}</h3>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
