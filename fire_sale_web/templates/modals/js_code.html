@@ -1,16 +1,19 @@
 <script>
     $(function() {
     $("#button__click").on("click", offerButtonHandler);
-});
+    });
 
-  function addOffer(){
+    function addOffer(){
       console.log("adding offer")
+        var item_id = parseInt($('#itemIdContainer').text())
+        console.log(item_id)
             $.ajax({
                 type: 'POST',
-                url: "{% url 'modals:form_test' 28 %}",
+                url: "{% url 'modals:form_test' %}",
                 data:{
                     csrfmiddlewaretoken:'{{ csrf_token }}',
                     offer:$('#offer_input').val(),
+                    itemId: item_id
                 },
             success: function(data){
                     var click_modal = $('#click_modal');
@@ -48,7 +51,7 @@
                     });
                 },
             });
-  }
+    }
 
 
     function offerButtonHandler() {

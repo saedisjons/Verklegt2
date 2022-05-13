@@ -10,19 +10,20 @@ from users.models import Profile
 from .models import ItemOffer
 from .forms.modal_forms import OfferForm
 
-def form_test(request, id):
+def form_test(request):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     context = {}
-    item = get_object_or_404(Item, id=id)
     buyer = get_object_or_404(User, pk=request.user.id)
-    owner = get_object_or_404(User, pk=item.user_id)
     if is_ajax and buyer != None:
         if request.method == "POST":
             offer_price = request.POST['offer']
+            item_id = request.POST['itemId']
+            item = get_object_or_404(Item, id=item_id)
+            owner = get_object_or_404(User, pk=item.user_id)
             offer = ItemOffer(item=item, buyer=buyer,owner=owner, offer=int(offer_price))
             offer.save()
-            return get_item_by_id(request, id)
-        return render(request, 'modals/modalsBase.html', context)
+            return get_item_by_id(request, item_id)
+        return render(request, 'modals/modalsBase.html')
     else:
         return redirect('login')
 

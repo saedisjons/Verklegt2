@@ -8,6 +8,7 @@
     {% for item_image in item.itemimage_set.all %}
         <img src="{{ item_image.image }}" class="item-image" />
     {% endfor %}
+    <p class="hidden" id="itemIdContainer">{{ item.id }}</p>
 
     {% if user.is_authenticated %}{% if user.id == item.user_id %}
         <div class="single-item-btn">
@@ -16,7 +17,7 @@
         </div>
     {% else %}
         <div class="offer-btn">
-            {% include "modals/modalsBase.html" %}
+            {% include 'modals/modalsBase.html' %}
         </div>
     {% endif %}{% endif %}
 
