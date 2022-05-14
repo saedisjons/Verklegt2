@@ -1,4 +1,18 @@
 /*Item Catalog*/
+.confirm-order-container {
+    border: 2px solid black;
+}
+
+.confirm-order-container-left {
+    width: 50%;
+    float: left;
+}
+
+.confirm-order-container-right {
+    width: 50%;
+    float: left;
+}
+
 .base-container {
     display: flex;
     min-height: 300px;
